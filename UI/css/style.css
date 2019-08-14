@@ -1,0 +1,115 @@
+*{
+    margin: 0px;
+    padding: 0px;
+
+}
+.background{
+    
+    background-image: url(../images/img3.jpg);
+    background-color: rgb(0,0,0,0.2);
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100vh;
+
+}
+.header{
+
+    width: 100%;
+    height: 100px;
+    background-color: rgb(0,0,0,0.5);
+
+}
+.left-side{
+    width: 25%;
+    line-height: 100px;
+    float: left;
+}
+.left-side h4{
+    padding-left: 70px;
+    font-weight: bold;
+    color: whitesmoke;
+    font-size: 22px; 
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+
+}
+
+#current{
+    color: orange;
+}
+.right-side{
+    width: 70%;
+    height: 80px;
+    float: right;
+
+}
+ .right-side ul{
+    margin-left: 550px;
+    list-style: none;
+}
+
+.right-side ul li {
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block;
+    list-style: none;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 100px;
+    margin-left: 40px;
+    text-transform: uppercase;
+
+}
+.right-side ul button{
+    margin-left: 20px;
+}
+.right-side ul li a{
+    color: white;
+    list-style: none; 
+    
+} 
+#signin{
+
+    background-color: #00FFFF;
+    border-radius: 10%;
+    border: none;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    line-height: 40px;
+    width: 100px;
+    margin-top: 25px;
+    
+
+}
+.welcome{
+    width: 100%;
+    margin-top: 180px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+.welcome h1{
+    font-size: 62px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700px;
+    margin: 14px 0px;
+}
+.welcome h4{
+
+    font-size: 30px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#sign{
+    background-color:#00FFFF;
+    border: none;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 40px;
+    width: 150px;
+    margin-top: 25px;
+    
+}

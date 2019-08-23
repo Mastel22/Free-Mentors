@@ -1,0 +1,52 @@
+body{
+    font-family: sans-serif;
+    font-size: 0.9em;
+    line-height: 1.5em;
+    background-image: url(../images/img3.JPG);
+    background-size: cover;
+    background-attachment: fixed;
+}
+table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    opacity: 0.95;
+    width: 85%;
+    align
+   
+
+}
+th{
+    background:  rgba(44, 62, 80, 0.8);
+    color: white;
+}
+tr:nth-child(even)
+{
+    background: #e8e8e8;
+
+}
+tr:nth-child(odd)
+{
+    background: white;
+}
+.header{
+    background: rgba(44, 62, 80, 0.5);
+    color: white;
+}
+th, td{
+    text-align: center;
+    padding: 10px;
+}
+.btn{
+
+    border: none;
+    width: 100px;
+    margin-left: 40px;
+    background: #00FFFF;
+    color: #000;
+    font-size: 16px;
+    line-height: 15px;
+    padding: 10px 0;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold; 
+}

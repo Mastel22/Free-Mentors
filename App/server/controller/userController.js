@@ -24,7 +24,7 @@ class UserController{
         const newUser = {
             id: db.length+1,
             firstName,
-            lastName,
+            lastName, 
             Email,
             password,
             address,

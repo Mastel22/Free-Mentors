@@ -62,10 +62,14 @@
 .right-side ul button{
     margin-left: 20px;
 }
+
+.right-side ul li{
+    list-style: none; 
+}
+
+
 .right-side ul li a{
     color: white;
-    list-style: none; 
-    
 } 
 #sign{
     background-color: #00FFFF;
@@ -171,14 +175,13 @@ h2{
 a{
     color: yellow;
     text-decoration: blink;
-    
-
 }
-#create{
 
+#create{
     margin-top: 35px;
     color: white;
 }
+
 .container
 {
     display: flex;

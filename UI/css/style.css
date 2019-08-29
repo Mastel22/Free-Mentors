@@ -70,14 +70,13 @@
 #signin{
 
     background-color: #00FFFF;
-    border-radius: 10%;
-    border: none;
+    /* color: white; */
+    padding: 14px 25px;
     font-weight: bold;
-    font-size: 12px;
-    font-family: 'Montserrat', sans-serif;
+    text-align: center; 
+    text-decoration: none;
     text-transform: uppercase;
-    line-height: 40px;
-    width: 100px;
+    display: inline-block;
     margin-top: 25px;
     
 
@@ -101,15 +100,23 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-#sign{
-    background-color:#00FFFF;
-    border: none;
-    font-size: 15px;
-    font-family: 'Montserrat', sans-serif;
+ #sign{
+    background-color: #00FFFF;
+    /* color: white; */
+    padding: 14px 25px;
     font-weight: bold;
+    text-align: center; 
+    text-decoration: none;
     text-transform: uppercase;
-    line-height: 40px;
-    width: 150px;
+    display: inline-block;
     margin-top: 25px;
-    
+} 
+
+@media screen and (max-width: 800px) {
+    .welcome h1 {
+        font-size: 1em;
+    }
+    .header .left-side h4 {
+        font-size: 1em;
+    }
 }

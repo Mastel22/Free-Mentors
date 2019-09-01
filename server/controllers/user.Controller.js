@@ -65,6 +65,20 @@ export const sessionCreate = (req, res) => {
   }
   return res.status(403).json({
     status: 403,
+    message: 'Forbidden access',
+  });
+};
+
+export const getMentor = (req, res) => {
+  if (req.user.role === 'mentee') {
+    const mentor = users.find((user) => user.role === 'mentor');
+    return res.status(200).json({
+      status: 200,
+      data: mentor,
+    });
+  }
+  console.log(req.user.role);
+  return res.status(403).json({
     message: 'Forbidden',
   });
 };

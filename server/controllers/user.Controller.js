@@ -103,3 +103,25 @@ export const acceptmentorshipRequest = (req, res) => {
     message: 'Not allowed',
   });
 };
+
+export const rejectmentorshipRequest = (req, res) => {
+  if (req.user.role === 'mentor') {
+    const index = sessions.findIndex((session) => session.sessionId.toString()
+    === req.params.sessionId);
+    if (index !== -1) {
+      sessions[index].status = 'rejected';
+      return res.status(200).json({
+        status: 200,
+        data: sessions[index],
+      });
+    }
+    return res.status(403).json({
+      status: 403,
+      message: 'no session found',
+    });
+  }
+  return res.status(409).json({
+    status: 409,
+    message: 'Not allowed',
+  });
+};

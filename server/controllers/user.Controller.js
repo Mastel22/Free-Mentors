@@ -34,9 +34,8 @@ export const signup = (req, res) => {
 };
 
 export const allMentors = (req, res) => {
-  if (req.user.role === 'mentee' || 'admin') {
+  if (req.user.role === 'mentee' || req.user.role === 'admin') {
     const mentors = users.filter((user) => user.role === 'mentor');
-    console.log(mentors);
     return res.status(200).json({
       status: 200,
       data: {
@@ -80,5 +79,27 @@ export const getMentor = (req, res) => {
   console.log(req.user.role);
   return res.status(403).json({
     message: 'Forbidden',
+  });
+};
+
+export const acceptmentorshipRequest = (req, res) => {
+  if (req.user.role === 'mentor') {
+    const index = sessions.findIndex((session) => session.sessionId.toString()
+    === req.params.sessionId);
+    if (index !== -1) {
+      sessions[index].status = 'accepted';
+      return res.status(200).json({
+        status: 200,
+        data: sessions[index],
+      });
+    }
+    return res.status(403).json({
+      status: 403,
+      message: 'no session found',
+    });
+  }
+  return res.status(409).json({
+    status: 409,
+    message: 'Not allowed',
   });
 };

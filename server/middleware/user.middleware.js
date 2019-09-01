@@ -18,6 +18,7 @@ export const hashPassword = async (req, res, next) => {
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(req.body.password, salt);
   req.body.password = hashPassword;
+  console.log(hashPassword);
   next();
 };
 

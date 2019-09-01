@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import users from '../db/data';
+import { users } from '../db/data';
 
 export const emailUsed = (req, res, next) => {
   const user = users.find((user) => user.email === req.body.email);
@@ -41,4 +41,5 @@ export const authenticate = async (req, res, next) => {
       message: 'Email  not found.',
     });
   }
+  return 0;
 };

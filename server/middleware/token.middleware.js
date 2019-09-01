@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import users from '../db/data';
+import { users } from '../db/data';
 
 const tokenVerifier = (req, res, next) => {
   const token = req.header('token');
@@ -18,6 +18,7 @@ const tokenVerifier = (req, res, next) => {
       token: verified,
       email: verified.email,
       role: user.role,
+      userId: user.userId,
     };
 
     next();

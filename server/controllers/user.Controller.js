@@ -1,6 +1,8 @@
 import User from '../models/user.model';
-import users from '../db/data';
+import { users, sessions } from '../db/data';
 import generateToken from '../helpers/token.helper';
+import Session from '../models/session.model';
+
 
 export const signin = (req, res) => {
   const token = generateToken(req.body.email);
@@ -30,7 +32,7 @@ export const signup = (req, res) => {
     },
   });
 };
-9
+
 export const allMentors = (req, res) => {
   if (req.user.role === 'mentee' || 'admin') {
     const mentors = users.filter((user) => user.role === 'mentor');
@@ -47,5 +49,22 @@ export const allMentors = (req, res) => {
     status: 204,
     message: 'Access Denied',
 
+  });
+};
+
+export const sessionCreate = (req, res) => {
+  if (req.user.role === 'mentee') {
+    const session = new Session(sessions.length + 1, req.body.mentorId,
+      req.user.userId, req.body.questions, req.user.email);
+    sessions.push(session);
+    return res.status(201).json({
+      status: 201,
+      message: 'Session created',
+      data: session,
+    });
+  }
+  return res.status(403).json({
+    status: 403,
+    message: 'Forbidden',
   });
 };

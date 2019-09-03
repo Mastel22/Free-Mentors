@@ -1,38 +1,51 @@
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset= utf-8"/>
-        <title>Sign In</title>
-        <link href="../css/signin.css" rel="stylesheet" type="text/css"/>
-        <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
-    </head>
-        <body>
-            <div class="background">
-                <div class="header">
-                        <div class="left-side">
-                            <h4>Free-Mentors</h4>
-                        </div>
-                        <div class="right-side">
-                            <ul>
-                                <li id="current"><a href="../index.html">Home</a></li>
-                                
-                                <li><a href="../pages/mentors.html" >Mentors</a></li>
-                                <a id="sign" href="signin.html">Sign In</a>
-                            </ul>
-                        </div>
-                    </div>
-                <form>
-                    <h2>Log In</h2>
-                    <input type="text" name="username" placeholder="Username">
-                    <input type="password" name="password" placeholder="Password">
-                    <a   href=""><input type="button"  value="Log In"></a>
-                    
-                    <div id="create">
-                            Don't have an account?<a href="signup.html">&nbsp;Sign Up</a>
-                    </div>
-                    
+<!DOCTYPE html>
+<html>
 
-                </form>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset= utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link href="../css/signin.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background">
+        <nav>
+            <div class="webName">
+                <h4>Free-Mentors</h4>
             </div>
-        </body>
-    </html>
+            <ul class="links">
+                <li id="current"><a href="../index.html">Home</a></li>
+               
+            </ul>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+        <div class="singin">
+            <form>
+                <h2>Log In</h2>
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <a href="mentors.html"><input type="button" value="Log In"></a>
+
+                <div id="create">
+                    Don't have an account?<a href="signup.html">&nbsp;Sign Up</a>
+                </div>
+
+
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2019 | Free-Mentors</p>
+        </div>
+    </div>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

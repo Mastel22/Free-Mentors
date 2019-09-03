@@ -1,72 +1,18 @@
 *{
     margin: 0px;
     padding: 0px;
-
+    
 }
 .background{
     
     background-image: url(../images/img3.jpg);
     background-color: rgb(0,0,0,0.5);
-    background-size: 100% 100%;
+    background-size: cover; 
     width: 100%;
-    height: 100vh;
-
-}
-.header{
-
-    width: 100%;
-    height: 100px;
-    background-color: rgb(0,0,0,0.5);
-
-}
-.left-side{
-    width: 25%;
-    line-height: 100px;
-    float: left;
-}
-.left-side h4{
-    padding-left: 70px;
-    font-weight: bold;
-    color: whitesmoke;
-    font-size: 22px; 
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
+    height: 1000px;
 
 }
 
-#current{
-    color: orange;
-}
-.right-side{
-    width: 70%;
-    height: 80px;
-    float: right;
-
-}
- .right-side ul{
-    margin-left: 550px;
-    list-style: none;
-}
-
-.right-side ul li {
-    font-family: 'Montserrat', sans-serif;
-    display: inline-block;
-    list-style: none;
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 100px;
-    margin-left: 40px;
-    text-transform: uppercase;
-
-}
-.right-side ul button{
-    margin-left: 20px;
-}
-.right-side ul li a{
-    color: white;
-    list-style: none; 
-    
-} 
 #signin{
 
     background-color: #00FFFF;
@@ -93,55 +39,25 @@
     border-radius: 10%;
     
 }
-
-.right-side{
-    width: 70%;
-    height: 80px;
-    float: right;
-
-}
- .right-side ul{
-    margin-left: 550px;
-    list-style: none;
-}
-
-.right-side ul li {
-    font-family: 'Montserrat', sans-serif;
-    display: inline-block;
-    list-style: none;
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 100px;
-    margin-left: 40px;
-    text-transform: uppercase;
-
-}
-.right-side ul button{
-    margin-left: 20px;
-}
-.right-side ul li a{
-    color: white;
-    list-style: none; 
-    
-} 
 *{
     border-radius: 5%;
 }
 .signup{
     background: black;
     padding: 40px;
-    width: 250px;
-    /* margin: auto; */
+    width: 400px;
+    margin: auto; 
     margin-top: 20px;
-    height: 450px;
+    height: 470px;
     margin-left: 180px;
     margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 20px;
     
 }
 
 input{
-    width: 240px;
+    width: 400px;
     text-align: center;
     background: transparent;
     border: none;
@@ -149,7 +65,7 @@ input{
     font-family: 'Play', sans-serif;
     font-size: 16px;
     font-weight: 200px;
-    padding: 10px 0;
+    padding: 13px 0;
     transition: border 0.5s;
     outline: none;
     color: #fff;
@@ -173,6 +89,7 @@ input[type=button]
     text-transform: uppercase;
     font-weight: bold;
     margin-right: 20px;
+    margin-left: 90px;
 
 }
 #signin{
@@ -185,6 +102,18 @@ input[type=button]
     margin-top: 25px;
     font-weight: bold;
 }
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10px;
+}
 
 input[type=button]:hover
 {
@@ -193,8 +122,60 @@ input[type=button]:hover
 
 }  
 h2{
-
     color: white;
     text-align: center;
+    text-transform: uppercase;
 
+}
+@media screen and (max-width: 768px) {
+    body{
+        overflow: hidden;
+    }
+    .links{
+        position: absolute;
+        right: 0px;
+        height: 70vh;
+        top: 8vh;
+        background-color: rgb(0,0,0,0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 30%;
+        transform: translateX(100%);
+        transition: transform 0.5 ease-in;
+    }
+    .links li{
+        /* opacity: 0; */
+    }
+    .hamburger{
+        display: block;
+    }
+}
+@media (max-width: 425px){
+    body{
+        background-image: url('');
+    }
+.signup {
+    width: 250px;
+    margin-left: 50px;
+}
+input, input[type="button"]{
+    width: 100%;
+}
+#signup{
+
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 5px;
+}
+}
+.nav-active{
+    transform: translateX(0%);
+}
+@keyframes linkFade{
+    from{
+        opacity: 0;
+        transform: translateX(0px);
+    }
 }

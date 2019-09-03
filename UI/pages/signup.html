@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link href="../css/signup.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/signup.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
 
 </head>
 
 <body>
-        <div class="background">
-                <div class="header">
-                        <div class="left-side">
-                            <h4>Free-Mentors</h4>
-                        </div>
-                        <div class="right-side">
-                            <ul>
-                                <li id="current"><a href="../index.html">Home</a></li>
-                                <li><a href="../pages/mentors.html" target="_blank">Mentors</a></li>
-                                <a id="signin" href="signin.html" >Sign In</a>
-                            </ul>
-                        </div>
-                    </div>
+    <div class="background">
+        <nav>
+            <div class="webName">
+                <h4>Free-Mentors</h4>
+            </div>
+            <ul class="links">
+                <li id="current"><a href="../index.html">Home</a></li>
+                <a  id="signNav" href="signin.html">Sign In</a>
+            </ul>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
         <div class="signup">
-        <form>
-            <h2 >Sign Up</h2>
-            <input type="text" name="name" placeholder="Last name">
-            <input type="text" name="name" placeholder="First name">
-            <input type="text" placeholder="Email address">
-            <input type="password" name="password" placeholder="Confirm Password">
-            <input type="password" name="password" placeholder="Password">
-            <input type="text" name="address" placeholder="Address">
-            <input type="text" name="bio" placeholder="Bio">
-            <input type="text" name="occupation" placeholder="Occupation">
-            <input type="text" name="expertise" placeholder="Expertise">
-            <input id="signup" type="button" value="Sign Up"><br><br>
-            
-            
-        </form>
-    </div>
-</div>
+            <form>
+                <h2>Sign Up</h2>
+                <input type="text" name="name" placeholder="Last name">
+                <input type="text" name="name" placeholder="First name">
+                <input type="text" placeholder="Email address">
+                <input type="password" name="password" placeholder="Confirm Password">
+                <input type="password" name="password" placeholder="Password">
+                <input type="text" name="address" placeholder="Address">
+                <input type="text" name="bio" placeholder="Bio">
+                <input type="text" name="occupation" placeholder="Occupation">
+                <input type="text" name="expertise" placeholder="Expertise">
+                <input id="signup" type="button" value="Sign Up"><br><br>
 
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2019 | Free-Mentors</p>
+    </div>
+    <script src="../js/script.js"></script>
 </body>
- 
+
 </html>

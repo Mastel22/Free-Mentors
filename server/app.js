@@ -1,16 +1,15 @@
 import express from 'express';
-import db from './db/userdb';
 import bodyParser from 'body-parser';
-import route from './routes/index';
+import dotenv from 'dotenv';
+import route from './routes/routes';
 
 const app = express();
 
+dotenv.config();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(route);
+app.use('/api/v1', route);
 
-const PORT = 3001;
 
-app.listen( PORT, ()=>{
-    console.log(`Server listening at port ${PORT}`)
-});
+export default app;

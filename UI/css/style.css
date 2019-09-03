@@ -3,6 +3,45 @@
     padding: 0px;
 
 }
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: rgb(0,0,0,0.5);
+    font-family: 'Montserrat', sans-serif;
+
+}
+.webName{
+    color:white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+.links{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+}
+.links li{
+    list-style: none;
+}
+.links a{
+    color: white;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.hamburger{
+    display: none;
+}
+.hamburger div{
+    width: 25px;
+    height: 3px;
+    background-color: whitesmoke;
+    margin: 5px;
+}
 .background{
     
     background-image: url(../images/img3.jpg);
@@ -12,61 +51,10 @@
     height: 100vh;
 
 }
-.header{
-
-    width: 100%;
-    height: 100px;
-    background-color: rgb(0,0,0,0.5);
-
-}
-.left-side{
-    width: 25%;
-    line-height: 100px;
-    float: left;
-}
-.left-side h4{
-    padding-left: 70px;
-    font-weight: bold;
-    color: whitesmoke;
-    font-size: 22px; 
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-
+#signNav{
+    color: #00FFFF;
 }
 
-#current{
-    color: orange;
-}
-.right-side{
-    width: 70%;
-    height: 80px;
-    float: right;
-
-}
- .right-side ul{
-    margin-left: 550px;
-    list-style: none;
-}
-
-.right-side ul li {
-    font-family: 'Montserrat', sans-serif;
-    display: inline-block;
-    list-style: none;
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 100px;
-    margin-left: 40px;
-    text-transform: uppercase;
-
-}
-.right-side ul button{
-    margin-left: 20px;
-}
-.right-side ul li a{
-    color: white;
-    list-style: none; 
-    
-} 
 #signin{
 
     background-color: #00FFFF;
@@ -102,21 +90,60 @@
 
  #sign{
     background-color: #00FFFF;
-    /* color: white; */
     padding: 14px 25px;
     font-weight: bold;
     text-align: center; 
     text-decoration: none;
     text-transform: uppercase;
     display: inline-block;
+    border-radius: 10%;
     margin-top: 25px;
+    margin-left: 30px;
 } 
 
-@media screen and (max-width: 800px) {
-    .welcome h1 {
-        font-size: 1em;
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+    body{
+        overflow-x: hidden;
     }
-    .header .left-side h4 {
-        font-size: 1em;
+    .links{
+        position: absolute;
+        right: 0px;
+        height: 50vh;
+        top: 8vh;
+        background-color: rgb(0,0,0,0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 25%;
+        transform: translateX(100%);
+        transition: transform 0.5 ease-in;
+    }
+    
+    .hamburger{
+        display: block;
+        cursor: pointer;
+    }
+}
+.nav-active{
+    transform: translateX(0%);
+}
+@keyframes linkFade{
+    from{
+        opacity: 0;
+        transform: translateX(0px);
     }
 }

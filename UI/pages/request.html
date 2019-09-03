@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Request Form</title>
-    <link rel="stylesheet" type="text/css" href="../css/request.css">
-</head>
-<body>
-    <div class="container">
-        <h3>Request Form</h3>
-        <div class="request">
-            <input type="text" name="" placeholder="mentorID"  class="input">
-            
-        </div>
-        <div class="msg">
-            <textarea class="area" placeholder="Question"></textarea>    
-        </div>
-        
-        <button id="submit"   href="#">Submit</button>
-    </div>
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="../css/request.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="background">
+        <nav>
+            <div class="webName">
+                <h4>Free-Mentors</h4>
+            </div>
+            <ul class="links">
+                <li id="current"><a href="mentors.html">Mentors</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+        <div class="request">
+            <form>
+                <h2>REQUEST FORM</h2>
+                <input type="text" name="name" placeholder="Mentor name">
+                <input type="text" name="name" placeholder="Course">
+                <input type="text" placeholder="Email address">
+                <input type="text" name="course" placeholder="Highest education Level">
+                <input id="submit" type="button" value="SUBMIT"><br><br>
+
+
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2019 | Free-Mentors</p>
+    </div>
+    <script src="../js/script.js"></script>
 </body>
+
 </html>

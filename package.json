@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc --reporter=text --reporter=html mocha ./server/test/**.test.js --require @babel/polyfill --require @babel/register",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "start": "node_modules/.bin/nodemon ./server/server.js --exec babel-node --"
+    "dev": "node_modules/.bin/nodemon ./server/server.js --exec babel-node --",
+    "start": "babel-node ./server/server.js"
   },
   "repository": {
     "type": "git",

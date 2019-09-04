@@ -44,8 +44,8 @@ export const allMentors = (req, res) => {
     });
   }
 
-  return res.status(204).json({
-    status: 204,
+  return res.status(401).json({
+    status: 401,
     message: 'Access Denied',
 
   });

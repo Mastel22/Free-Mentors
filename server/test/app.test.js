@@ -1,60 +1,91 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import { describe, it } from 'mocha';
-import server from '../server';
+import app from '../app';
 
+chai.should();
 chai.use(chaiHttp);
 
-describe('Users: ', () => {
+describe('App: ', () => {
+
+  let token;
+  let mentorToken;
+
   const data = {
-    firstName: 'Pierrette',
-    lastName: 'MASTEL',
-    address: 'Kigali',
-    email: 'mastel@gmail.com',
-    password: '0788969674',
-    bio: ' dkk',
-    occupation: 'tyui',
-    expertise: 'Java',
+    "firstName": "Mastel",
+    "lastName": "Mahoro",
+    "email": "amstell@gmail.com",
+    "address": "Kigali",
+    "password": "0775315500",
+    "bio": "code",
+    "occupation": "Andela Fellow",
+    "expertise": "Swift"
   };
-  it('should create new user.', (done) => {
-    chai.request(server).post('/api/v1/auth/signup').send(data).end((_err, res) => {
-      chai.expect(res.status).to.eq(201);
+
+  it('should create a new user', (done) => {
+    chai.request(app).post('/api/v1/auth/signup').send(data).end((error, res) => {
+      res.should.have.status(201);
+      token = res.body.data.token;
       done();
-    });
-  });
-
-//   it('should return error if all required fields are not supplied', (done) => {
-//     const userData = {
-//       firstName: 'Pierrette',
-//       lastName: 'Mastel',
-//       address: 'Kigali',
-//       password: '0788969674',
-//       bio: 'jk',
-//       occupation: 'rtyu',
-//       expertise: 'Java',
-//     };
-//     chai.request(server).post('/api/v1/auth/signup').send(userData).end((err, res) => {
-//       chai.expect(res.status).to.eq(400);
-//       done();
-//     });
-//   });
-
-  it('should return error if email already exists', (done) => {
-    chai.request(server).post('/api/v1/auth/signup').send(data).end((err, res) => {
-      chai.expect(res.status).to.eq(409);
-      done();
-    });
-  });
-
-  it('should return a token and user details', () => {
-    chai.request(server).post('/api/v1/auth/signin').send({
-      email: 'mastel@gmail.com',
-      password: '0775315500',
-    }).then((res) => {
-      chai.expect(res.status).to.eq(200);
     })
-      .catch((error) => {
-        throw error;
-      });
   });
+
+  
+
+  it('should signin a user', (done) => {;
+    chai.request(app).post('/api/v1/auth/signin').send({email: data.email, password: data.password}).end((error, res) => {
+      res.should.have.status(200);
+      done();
+    })
+  });
+
+  it('should create of a mentor', (done) => {;
+    chai.request(app).post('/api/v1/auth/signin').send({email: "master@gmail.com", password: "jeanluc"}).end((error, res) => {
+      mentorToken = res.body.data.token;
+      res.should.have.status(200);
+      done();
+    })
+  });
+
+  it('should return all mentors', (done) => {;
+    chai.request(app).get('/api/v1/mentors').set('token', token).end((error, res) => {
+      res.should.have.status(200);
+      done();
+    })
+  });
+
+  
+
+  it('should create a session', (done) => {
+    const session = {
+      "mentorId": 2,
+      "question": "When should we begin",
+    };
+    chai.request(app).post('/api/v1/sessions').send(session).set('token', token).end((error, res) => {
+      res.should.have.status(201);
+      done();
+    })
+  });
+
+  it('should return message not found', (done) => {
+    const session = {
+      "mentorId": 3,
+      "question": "When should we begin",
+    };
+    chai.request(app).post('/api/v1/sessions').send(session).set('token', token).end((error, res) => {
+      res.should.have.status(404);
+      done();
+    })
+  });
+  it('should return message Forbidden access', (done) => {
+    const session = {
+      "mentorId": 3,
+      "question": "When should we begin",
+    };
+    chai.request(app).post('/api/v1/sessions').send(session).set('token', mentorToken).end((error, res) => {
+      res.should.have.status(403);
+      done();
+    })
+  });
+
+
 });

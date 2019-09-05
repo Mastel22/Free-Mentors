@@ -11,8 +11,8 @@ const validation = (req, res, next) => {
 
     return Joi.validate(req.body, schema, (error, data) => {
       if (error) {
-        res.status(409).json({
-          status: 409,
+        res.status(400).json({
+          status: 400,
           error: error.details[0].message,
         });
       }

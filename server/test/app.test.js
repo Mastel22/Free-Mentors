@@ -29,23 +29,23 @@ describe('App: ', () => {
     })
   });
 
-  it('should return message enter first name', (done) => {
-    const user = {
-      "firstName": "",
-      "lastName": "Mahoro",
-      "email": "amstell@gmail.com",
-      "address": "Kigali",
-      "password": "0775315500",
-      "bio": "code",
-      "occupation": "Andela Fellow",
-      "expertise": "Swift"
-    };
-    chai.request(app).post('/api/v1/auth/signup').send(user).end((error, res) => {
-      res.should.have.status(400);
-      token = res.body.data.token;
-      done();
-    })
-  });
+  // it('should return message enter first name', (done) => {
+  //   const user = {
+  //     "firstName": "",
+  //     "lastName": "Mahoro",
+  //     "email": "amstell@gmail.com",
+  //     "address": "Kigali",
+  //     "password": "0775315500",
+  //     "bio": "code",
+  //     "occupation": "Andela Fellow",
+  //     "expertise": "Swift"
+  //   };
+  //   chai.request(app).post('/api/v1/auth/signup').send(user).end((error, res) => {
+  //     res.should.have.status(400);
+  //     token = res.body.data.token;
+  //     done();
+  //   })
+  // });
 
   it('should signin a user', (done) => {;
     chai.request(app).post('/api/v1/auth/signin').send({email: data.email, password: data.password}).end((error, res) => {

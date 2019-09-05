@@ -16,10 +16,16 @@ const validation = (req, res, next) => {
           error: error.details[0].message,
         });
       }
+      
       req.body = data;
       next();
     });
+  }else{
+    res.status(405).json({
+      status: 405
+    })
   }
+  
 };
 
 export default validation;

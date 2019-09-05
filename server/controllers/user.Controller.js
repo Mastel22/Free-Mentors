@@ -142,3 +142,25 @@ export const rejectmentorshipRequest = (req, res) => {
     message: 'Not allowed',
   });
 };
+
+// export const changeMentortoMentee = (req, res) => {
+//   if (req.user.role === 'admin') {
+//     const index = users.findIndex((user) => user.userId.toString()
+//       === req.params.userId);
+//     if (index !== -1) {
+//       users[index].role = 'mentor';
+//       return res.status(200).json({
+//         status: 200,
+//         data: users[index],
+//       });
+//     }
+//     return res.status(403).json({
+//       status: 403,
+//       message: 'no user found',
+//     });
+//   }
+//   return res.status(409).json({
+//     status: 403,
+//     message: 'Not allowed',
+//   });
+// };

@@ -36,6 +36,7 @@ export const signup = (req, res) => {
 export const allMentors = (req, res) => {
   if (req.user.role === 'mentee' || req.user.role === 'admin') {
     const mentors = users.filter((user) => user.role === 'mentor');
+    
     return res.status(200).json({
       status: 200,
       data: {
@@ -52,6 +53,7 @@ export const allMentors = (req, res) => {
 
 export const sessionCreate = (req, res) => {
   if (req.user.role == 'mentee') {
+    console.log(req.body);
     const checkMentor = users.find((user) => user.userId == req.body.mentorId && user.role === 'mentor');
     if (checkMentor) {
       const session = new Session(sessions.length + 1, req.body.mentorId,
@@ -81,10 +83,11 @@ export const sessionCreate = (req, res) => {
 export const getMentor = (req, res) => {
   if (req.user.role === 'mentee') {
     const mentor = users.find((user) => user.userId == req.params.mentorId && user.role === 'mentor');
+    const {password, ...data} = mentor;
     if (mentor) {
       return res.status(200).json({
         status: 200,
-        data: mentor,
+        data: data,
       });
     }
     else {
@@ -143,24 +146,24 @@ export const rejectmentorshipRequest = (req, res) => {
   });
 };
 
-// export const changeMentortoMentee = (req, res) => {
-//   if (req.user.role === 'admin') {
-//     const index = users.findIndex((user) => user.userId.toString()
-//       === req.params.userId);
-//     if (index !== -1) {
-//       users[index].role = 'mentor';
-//       return res.status(200).json({
-//         status: 200,
-//         data: users[index],
-//       });
-//     }
-//     return res.status(403).json({
-//       status: 403,
-//       message: 'no user found',
-//     });
-//   }
-//   return res.status(409).json({
-//     status: 403,
-//     message: 'Not allowed',
-//   });
-// };
+export const changeMenteetoMentor = (req, res) => {
+  if (req.user.role === 'admin') {
+    const index = users.findIndex((user) => user.userId.toString()
+      === req.params.userId);
+    if (index !== -1) {
+      users[index].role = 'mentor';
+      return res.status(200).json({
+        status: 200,
+        data: users[index],
+      });
+    }
+    return res.status(403).json({
+      status: 403,
+      message: 'no user found',
+    });
+  }
+  return res.status(409).json({
+    status: 403,
+    message: 'Not allowed',
+  });
+};

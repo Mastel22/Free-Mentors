@@ -83,10 +83,11 @@ export const sessionCreate = (req, res) => {
 export const getMentor = (req, res) => {
   if (req.user.role === 'mentee') {
     const mentor = users.find((user) => user.userId == req.params.mentorId && user.role === 'mentor');
+    const {password, ...data} = mentor;
     if (mentor) {
       return res.status(200).json({
         status: 200,
-        data: mentor,
+        data: data,
       });
     }
     else {

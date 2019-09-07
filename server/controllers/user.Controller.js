@@ -2,6 +2,9 @@ import User from '../models/user.model';
 import { users, sessions } from '../db/data';
 import generateToken from '../helpers/token.helper';
 import Session from '../models/session.model';
+import Database from '../db/db';
+
+const db = new Database();
 
 export const signin = (req, res) => {
   const token = generateToken(req.body.email);
@@ -15,15 +18,16 @@ export const signin = (req, res) => {
   });
 };
 
-export const signup = (req, res) => {
+export const signup = async (req, res) => {
   const user = new User(users.length + 1, req.body.firstName, req.body.lastName, req.body.email,
-    req.body.password,
-    req.body.address, req.body.bio, req.body.occupation, req.body.expertise, req.body.role);
-  users.push(user);
+    req.body.password, req.body.address, req.body.bio, req.body.occupation, req.body.expertise, req.body.role);
+  // users.push(user);
+
+  await db.insertIntoUser(user);
 
   const token = generateToken(user.email);
 
-  res.status(201).json({
+  return res.status(201).json({
     status: 201,
     message: 'User created successfully',
     data: {

@@ -3,10 +3,8 @@
 
 # Free-Mentors
 
-Free Mentors is a social initiative where accomplished professionals become role models to                           young people to provide free mentorship sessions.
+Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.
 
-https://malcolmmark.github.io/Autom-art/
-[![Build Status](https://travis-ci.org/MalcolmMark/Automart.svg?branch=develop)](https://travis-ci.org/MalcolmMark/Automart) [![Coverage Status](https://coveralls.io/repos/github/MalcolmMark/Automart/badge.svg?branch=develop)](https://coveralls.io/github/MalcolmMark/Automart?branch=develop)
 # Required Features
 1. Users can sign up:  `https://mastel22.github.io/Free-Mentors/UI/pages/signup.html`
 2. Users can sign in. `https://mastel22.github.io/Free-Mentors/UI/pages/signin.html` 

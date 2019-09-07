@@ -1,13 +1,17 @@
 import bcrypt from 'bcrypt';
-import { users } from '../db/data';
+import Database from '../db/db';
 
-export const emailUsed = (req, res, next) => {
-  const user = users.find((user) => user.email === req.body.email);
-  if (user) {
+const db = new Database();
+
+export const emailUsed = async (req, res, next) => {
+  // const user = users.find((user) => user.email === req.body.email);
+  const result = await db.selectCount('users', 'email', req.body.email);
+  
+  if (result.rows[0].count !== '0') {
     return res.status(409).json({
       status: 409,
       message: 'Email already used',
-      data: user.email,
+      data: req.body.email,
     });
   }
   next();

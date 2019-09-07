@@ -26,7 +26,7 @@ Free Mentors is a social initiative where accomplished professionals become role
 ## Installation
 
 - To run my App you can clone this Repo from github to your local machine.
-  git clone <https://github.com/shaazk/Free-Mentors>
+  git clone <https://github.com/Mastel22/Free-Mentors.git>
 
   cd GitHub/Free Mentors
 

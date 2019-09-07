@@ -2,7 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import route from './routes/routes';
+import Database from './db/db';
 
+new Database().createScripts();
 
 const app = express();
 

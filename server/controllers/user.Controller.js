@@ -3,7 +3,6 @@ import { users, sessions } from '../db/data';
 import generateToken from '../helpers/token.helper';
 import Session from '../models/session.model';
 
-
 export const signin = (req, res) => {
   const token = generateToken(req.body.email);
 

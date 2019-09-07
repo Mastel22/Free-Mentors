@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nyc --reporter=text --reporter=html mocha ./server/test/**.test.js --require @babel/polyfill --require @babel/register",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "dev": "nodemon ./server/server.js --exec babel-node --",
+    "dev": "nodemon --exec babel-node ./server/server.js",
     "start": "babel-node ./server/server.js"
   },
   "repository": {
@@ -25,18 +25,19 @@
   },
   "homepage": "https://github.com/Mastel22/Free-Mentors#readme",
   "dependencies": {
-    "@hapi/joi": "^15.1.1",
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
+    "@hapi/joi": "^15.1.1",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^7.12.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",

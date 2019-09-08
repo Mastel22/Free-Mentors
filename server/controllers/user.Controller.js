@@ -38,8 +38,19 @@ export const signup = async (req, res) => {
 
 export const allMentors = (req, res) => {
   if (req.user.role === 'mentee' || req.user.role === 'admin') {
-    const mentors = users.filter((user) => user.role === 'mentor');
-    
+    const mentors = users.filter((user) => user.role === 'mentor').map(m => {
+      return {
+        firstname: m.firstName,
+        lastname: m.lastName,
+        email: m.email,
+        address: m.address,
+        bio: m.bio,
+        occupation: m.occupation,
+        expertise: m.expertise,
+        role: m.role
+      }
+    });
+
     return res.status(200).json({
       status: 200,
       data: {

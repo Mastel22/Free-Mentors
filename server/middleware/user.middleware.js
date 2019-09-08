@@ -27,10 +27,9 @@ export const hashPassword = async (req, res, next) => {
 
 
 export const authenticate = async (req, res, next) => {
-  const user = users.find((user) => user.email === req.body.email);
-
-  if (user) {
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
+  const user = await db.selectBy('users','email',req.body.email);
+  if (user.rowCount > 0 ) {
+    const validPassword = await bcrypt.compare(req.body.password, user.rows[0].password);
     if (validPassword) {
       next();
     } else {

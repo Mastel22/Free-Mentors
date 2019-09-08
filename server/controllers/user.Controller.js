@@ -36,12 +36,13 @@ export const signup = async (req, res) => {
   });
 };
 
-export const allMentors = (req, res) => {
+export const allMentors = async (req, res) => {
   if (req.user.role === 'mentee' || req.user.role === 'admin') {
-    const mentors = users.filter((user) => user.role === 'mentor').map(m => {
+    const mentors = await db.selectBy('users','role','mentor');
+    const result = mentors.rows.map(m => {
       return {
-        firstname: m.firstName,
-        lastname: m.lastName,
+        firstName: m.firstname,
+        lastname: m.lastname,
         email: m.email,
         address: m.address,
         bio: m.bio,
@@ -54,7 +55,7 @@ export const allMentors = (req, res) => {
     return res.status(200).json({
       status: 200,
       data: {
-        mentors,
+        result,
       },
     });
   }

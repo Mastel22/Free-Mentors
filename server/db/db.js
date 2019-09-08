@@ -30,9 +30,9 @@ class Database{
         const newSession = await con.query(`Insert into sessions(mentorId, menteeId, questions, menteeEmail, status) values(
             ${data.mentorId},
             ${data.menteeId},
-            ${data.questions},
-            ${data.menteeeEmail},
-            ${data.status}
+            '${data.questions}',
+            '${data.menteeeEmail}',
+            '${data.status}'
         ) returning *`);
         await con.end();
         return newSession;
@@ -45,7 +45,7 @@ class Database{
     }
     async selectBy(table,column,value){
         const con = this.dbConnection();
-        const result = await con.query(`SELECT * FROM ${table} WHERE ${column}=${value}`)
+        const result = await con.query(`SELECT * FROM ${table} WHERE ${column}='${value}'`)
         await con.end();
         return result;
     }

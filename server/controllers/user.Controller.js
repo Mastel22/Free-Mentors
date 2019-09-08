@@ -97,11 +97,11 @@ export const sessionCreate = async (req, res) => {
   });
 };
 
-export const getMentor = (req, res) => {
+export const getMentor = async (req, res) => {
   if (req.user.role === 'mentee') {
-    const mentor = users.find((user) => user.userId == req.params.mentorId && user.role === 'mentor');
-    const {password, ...data} = mentor;
-    if (mentor) {
+    const mentor = await db.selectBy('users', 'userid', req.params.mentorId)
+    const {password, ...data} = mentor.rows[0];
+    if (mentor.rows[0]) {
       return res.status(200).json({
         status: 200,
         data: data,

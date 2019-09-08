@@ -1,4 +1,5 @@
 import { Pool } from 'pg';
+import User from '../models/user.model';
 
 
 class Database{
@@ -72,6 +73,10 @@ class Database{
 
             CREATE TABLE IF NOT EXISTS REVIEWS (sessionId INTEGER REFERENCES sessions(sessionId) ON DELETE CASCADE,menteeId INTEGER REFERENCES users(userId) ON DELETE CASCADE,mentorId INTEGER REFERENCES users(userId) ON DELETE CASCADE,menteefirstName VARCHAR(300),menteelastName VARCHAR(300),remark VARCHAR(300));
         `);
+        const result = await this.selectCount('users', 'email', 'admin@freementors.com');
+        if (result.rows[0].count === '0') {
+            this.insertIntoUser(new User(1, 'Pierrette', 'Mastel', 'admin@freementors.com', '$2b$10$u5/7UoGq1cPDVcgGqyPaAuq6XscR9CFI.Vcg9oGcba9LVp940J9FS', 'KK 183', '5years of web developments', 'Web Developer', '3years developing apps', 'admin'));
+        }
         con.end();
     }
 

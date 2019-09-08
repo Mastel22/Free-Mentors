@@ -65,14 +65,16 @@ export const allMentors = (req, res) => {
   });
 };
 
-export const sessionCreate = (req, res) => {
+export const sessionCreate = async (req, res) => {
   if (req.user.role == 'mentee') {
-    console.log(req.body);
-    const checkMentor = users.find((user) => user.userId == req.body.mentorId && user.role === 'mentor');
-    if (checkMentor) {
+    const checkMentor = await db.selectBy('users','userId',req.body.mentorId);
+    //const checkMentor = users.find((user) => user.userId == req.body.mentorId && user.role === 'mentor');
+    if (checkMentor.rows[0] && checkMentor.rows[0].role == 'mentor') {
       const session = new Session(sessions.length + 1, req.body.mentorId,
         req.user.userId, req.body.questions, req.user.email);
-      sessions.push(session);
+
+      await db.insertIntoSession(session);
+      
       return res.status(201).json({
         status: 201,
         message: 'Session created',

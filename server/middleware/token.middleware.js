@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken';
-import { users } from '../db/data';
+import Database from '../db/db';
 
-const tokenVerifier = (req, res, next) => {
+const db = new Database();
+
+const tokenVerifier = async (req, res, next) => {
   const token = req.header('token');
 
   if (!token) {
@@ -13,12 +15,13 @@ const tokenVerifier = (req, res, next) => {
 
   try {
     const verified = jwt.verify(token, process.env.KEY);
-    const user = users.find((user) => user.email === verified.email);
+    // const user = users.find((user) => user.email === verified.email);
+    const user = await db.selectBy('users','email',req.body.email);
     req.user = {
       token: verified,
       email: verified.email,
-      role: user.role,
-      userId: user.userId,
+      role: user.rows[0].role,
+      userId: user.rows[0].userId,
     };
 
     next();

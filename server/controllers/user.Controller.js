@@ -70,7 +70,8 @@ export const sessionCreate = async (req, res) => {
     const checkMentor = await db.selectBy('users','userId',req.body.mentorId);
     //const checkMentor = users.find((user) => user.userId == req.body.mentorId && user.role === 'mentor');
     if (checkMentor.rows[0] && checkMentor.rows[0].role == 'mentor') {
-      const session = new Session(sessions.length + 1, req.body.mentorId,
+      
+      const session = new Session(req.body.mentorId,
         req.user.userId, req.body.questions, req.user.email);
 
       await db.insertIntoSession(session);
@@ -162,17 +163,18 @@ export const rejectmentorshipRequest = (req, res) => {
   });
 };
 
-export const changeMenteetoMentor = (req, res) => {
+export const changeMenteetoMentor = async (req, res) => {
   if (req.user.role === 'admin') {
-    const index = users.findIndex((user) => user.userId.toString()
-      === req.params.userId);
-    if (index !== -1) {
-      users[index].role = 'mentor';
+    // const index = users.findIndex((user) => user.userId.toString() === req.params.userId);
+    const result =  await db.updateMentee('mentor',req.params.userId);
+    
+    if (result.rowCount == 1) {
       return res.status(200).json({
         status: 200,
-        data: users[index],
+        message: 'User changed from Mentee to Mentor',
       });
     }
+     
     return res.status(403).json({
       status: 403,
       message: 'no user found',

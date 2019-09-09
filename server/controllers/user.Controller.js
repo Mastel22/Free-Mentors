@@ -59,7 +59,6 @@ export const allMentors = async (req, res) => {
       },
     });
   }
-
   return res.status(401).json({
     status: 401,
     message: 'Access Denied',
@@ -120,46 +119,50 @@ export const getMentor = async (req, res) => {
   });
 };
 
-export const acceptmentorshipRequest = (req, res) => {
+export const acceptmentorshipRequest = async (req, res) => {
   if (req.user.role === 'mentor') {
-    const index = sessions.findIndex((session) => session.sessionId.toString()
-      === req.params.sessionId);
-    if (index !== -1) {
-      sessions[index].status = 'accepted';
+    // const index = users.findIndex((user) => user.userId.toString() === req.params.userId);
+    const result =  await db.updateSession('accepted',req.params.sessionId);
+    
+    if (result.rowCount == 1) {
       return res.status(200).json({
         status: 200,
-        data: sessions[index],
+        message: 'Session changed to accepted',
       });
     }
+     
     return res.status(403).json({
       status: 403,
-      message: 'no session found',
+      message: 'session not found',
     });
   }
   return res.status(409).json({
-    status: 409,
+    status: 403,
     message: 'Not allowed',
   });
 };
 
-export const rejectmentorshipRequest = (req, res) => {
+  
+
+export const rejectmentorshipRequest = async (req, res) => {
   if (req.user.role === 'mentor') {
-    const index = sessions.findIndex((session) => session.sessionId.toString()
-      === req.params.sessionId);
-    if (index !== -1) {
-      sessions[index].status = 'rejected';
+    // const index = users.findIndex((user) => user.userId.toString() === req.params.userId);
+    const result =  await db.updateSession('rejected',req.params.sessionId);
+    
+    if (result.rowCount == 1) {
       return res.status(200).json({
         status: 200,
-        data: sessions[index],
+        message: 'Session changed to rejected',
       });
     }
+     
     return res.status(403).json({
       status: 403,
-      message: 'no session found',
+      message: 'session not found',
     });
   }
   return res.status(409).json({
-    status: 409,
+    status: 403,
     message: 'Not allowed',
   });
 };

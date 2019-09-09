@@ -13,7 +13,7 @@ describe('App: ', () => {
   const data = {
     "firstName": "Mastel",
     "lastName": "Mahoro",
-    "email": "amstell@gmail.com",
+    "email": "amsctell@gmail.com",
     "address": "Kigali",
     "password": "0775315500",
     "bio": "code",
@@ -26,7 +26,7 @@ describe('App: ', () => {
       res.should.have.status(201);
       token = res.body.data.token;
       done();
-    })
+    });
   });
 
   

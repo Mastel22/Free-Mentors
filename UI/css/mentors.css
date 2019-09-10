@@ -28,6 +28,13 @@ section{
     color: #333;
     position: relative;
 } 
+.links{
+    padding-bottom: 15px;
+    padding-left: 100px;
+}
+.links li {
+    margin-left: 150px;
+}
 .header::after{
     content: "";
     width: 10rem;
@@ -97,6 +104,7 @@ section{
     background-color: #445ae3;
     border-radius: 2rem;
     margin: 1rem 0;
+    cursor: pointer;
     text-transform: uppercase;
     color: #45e19f;
     font-size: 1.4rem;

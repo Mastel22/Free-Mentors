@@ -15,10 +15,7 @@ const tokenVerifier = async (req, res, next) => {
 
   try {
     const verified = jwt.verify(token, process.env.KEY);
-    // const user = users.find((user) => user.email === verified.email);
     const user = await db.selectBy('users','email',verified.email);
-    
-    
     req.user = {
       token: verified,
       email: verified.email,

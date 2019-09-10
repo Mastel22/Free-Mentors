@@ -4,7 +4,6 @@ import Database from '../db/db';
 const db = new Database();
 
 export const emailUsed = async (req, res, next) => {
-  // const user = users.find((user) => user.email === req.body.email);
   const result = await db.selectCount('users', 'email', req.body.email);
   
   if (result.rows[0].count !== '0') {

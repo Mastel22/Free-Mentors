@@ -12,6 +12,10 @@
     height: 100vh;
 
 }
+.links li{
+    padding-left: 250px;
+    padding-bottom: 20px;
+}
 
 #signin{
 
@@ -51,7 +55,7 @@
     height: 300px;
     margin-left: 180px;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 90px;
     margin-bottom: 20px;
     
 }

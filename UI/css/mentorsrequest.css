@@ -16,6 +16,9 @@ table{
    
 
 }
+.links li{
+    padding-left: 250px;
+}
 #signNav{
     margin-left: 40px;
 }

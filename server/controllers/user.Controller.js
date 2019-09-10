@@ -21,7 +21,6 @@ export const signin = (req, res) => {
 export const signup = async (req, res) => {
   const user = new User(users.length + 1, req.body.firstName, req.body.lastName, req.body.email,
     req.body.password, req.body.address, req.body.bio, req.body.occupation, req.body.expertise, req.body.role);
-  // users.push(user);
 
   await db.insertIntoUser(user);
 
@@ -68,7 +67,6 @@ export const allMentors = async (req, res) => {
 export const sessionCreate = async (req, res) => {
   if (req.user.role == 'mentee') {
     const checkMentor = await db.selectBy('users','userId',req.body.mentorId);
-    //const checkMentor = users.find((user) => user.userId == req.body.mentorId && user.role === 'mentor');
     if (checkMentor.rows[0] && checkMentor.rows[0].role == 'mentor') {
       
       const session = new Session(req.body.mentorId,
@@ -121,7 +119,6 @@ export const getMentor = async (req, res) => {
 
 export const acceptmentorshipRequest = async (req, res) => {
   if (req.user.role === 'mentor') {
-    // const index = users.findIndex((user) => user.userId.toString() === req.params.userId);
     const result =  await db.updateSession('accepted',req.params.sessionId);
     
     if (result.rowCount == 1) {
@@ -146,7 +143,6 @@ export const acceptmentorshipRequest = async (req, res) => {
 
 export const rejectmentorshipRequest = async (req, res) => {
   if (req.user.role === 'mentor') {
-    // const index = users.findIndex((user) => user.userId.toString() === req.params.userId);
     const result =  await db.updateSession('rejected',req.params.sessionId);
     
     if (result.rowCount == 1) {
@@ -169,7 +165,6 @@ export const rejectmentorshipRequest = async (req, res) => {
 
 export const changeMenteetoMentor = async (req, res) => {
   if (req.user.role === 'admin') {
-    // const index = users.findIndex((user) => user.userId.toString() === req.params.userId);
     const result =  await db.updateMentee('mentor',req.params.userId);
     
     if (result.rowCount == 1) {

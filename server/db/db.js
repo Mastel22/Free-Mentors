@@ -4,8 +4,18 @@ import User from '../models/user.model';
 
 class Database{
     dbConnection (){
+        let database_name;
+        switch (process.env.NODE_ENV) {
+            case 'production':
+                database_name = 'Free-Mentors';
+                break;
+        
+            case 'testing':
+                database_name = 'testingdb';
+                break;
+        }
         return new Pool({
-            connectionString: 'postgres://postgres:Almighty@127.0.0.1:5432/Free-Mentors' 
+            connectionString: `postgres://postgres:Almighty@127.0.0.1:5432/${database_name}` 
         });
     }
 
@@ -50,9 +60,9 @@ class Database{
         await con.end();
         return result;
     }
-    async updateSession(status,id){
+    async updateSession(status,id,mentorId){
         const con = this.dbConnection();
-        const  result = await con.query(`UPDATE sessions SET status = '${status}' WHERE sessionId = ${id};`);
+        const  result = await con.query(`UPDATE sessions SET status = '${status}' WHERE sessionId = ${id} AND mentorid = ${mentorId};`);
         await con.end();
         return result;
     }
@@ -81,9 +91,15 @@ class Database{
         `);
         const result = await this.selectCount('users', 'email', 'admin@freementors.com');
         if (result.rows[0].count === '0') {
-            this.insertIntoUser(new User(1, 'Pierrette', 'Mastel', 'admin@freementors.com', '$2b$10$u5/7UoGq1cPDVcgGqyPaAuq6XscR9CFI.Vcg9oGcba9LVp940J9FS', 'KK 183', '5years of web developments', 'Web Developer', '3years developing apps', 'admin'));
+           await this.insertIntoUser(new User('Pierrette', 'Mastel', 'admin@freementors.com', '$2b$10$u5/7UoGq1cPDVcgGqyPaAuq6XscR9CFI.Vcg9oGcba9LVp940J9FS', 'KK 183', '5years of web developments', 'Web Developer', '3years developing apps', 'admin'));
         }
-        con.end();
+        await con.end();
+    }
+
+    async deleteTestTables(){
+        const con = this.dbConnection();
+        await con.query(`DROP TABLE USERS,SESSIONS,REVIEWS CASCADE;`);
+        await con.end();
     }
 
 }

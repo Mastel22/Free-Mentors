@@ -7,7 +7,7 @@ const tokenVerifier = async (req, res, next) => {
   const token = req.header('token');
 
   if (!token) {
-    res.status(401).json({
+    return res.status(401).json({
       status: 401,
       message: 'You should first Login.',
     });
@@ -25,7 +25,7 @@ const tokenVerifier = async (req, res, next) => {
 
     next();
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       status: 400,
       message: 'Invalid token!',
     });

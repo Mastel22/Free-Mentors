@@ -16,9 +16,9 @@ route.post('/auth/signin', validation, authenticate, hashPassword, signin);
 route.get('/mentors', tokenVerifier, allMentors);
 route.post('/sessions', tokenVerifier, sessionCreate);
 route.get('/mentors/:mentorId', tokenVerifier, getMentor);
-route.patch('/sessions/:sessionId', tokenVerifier, acceptmentorshipRequest);
+route.patch('/sessions/:sessionId/accept', tokenVerifier, acceptmentorshipRequest);
 route.patch('/sessions/:sessionId/reject', tokenVerifier, rejectmentorshipRequest);
-route.patch('/menteetomentor/:userId/mentor', tokenVerifier, changeMenteetoMentor);
+route.patch('/user/:userId', tokenVerifier, changeMenteetoMentor);
 
 
 export default route;

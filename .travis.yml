@@ -9,7 +9,10 @@ install:
 cache:
   directories:
     - node_modules
-
+services:
+-postgres
+before-script:
+-psql -c 'CREATE DATABASE Free-Mentors;' -U postgres
 script:
   - npm test
 after_success:

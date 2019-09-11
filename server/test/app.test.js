@@ -124,5 +124,7 @@ describe('App: ', () => {
       chai.expect(res.body.message).to.be.eq('Session changed to rejected');
       done();
     })
+
   });
+
 });

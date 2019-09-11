@@ -7,7 +7,7 @@
     "test": "cross-env NODE_ENV=testing npm run deleteTables && cross-env NODE_ENV=testing npm run createTables && cross-env NODE_ENV=testing  nyc --reporter=text --reporter=html mocha ./server/test/**.test.js --require @babel/polyfill --require @babel/register --timeout 10000 --exit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "dev": "cross-env NODE_ENV=production nodemon --exec babel-node ./server/server.js",
-    "start": "cross-env NODE_ENV=production babel-node ./server/server.js",
+    "start": "cross-env NODE_ENV=production npm run createTables && cross-env NODE_ENV=production babel-node ./server/server.js",
     "createTables": "node --require @babel/polyfill --require @babel/register server/db/createTables.js",
     "deleteTables": "node --require @babel/polyfill --require @babel/register server/db/deleteTables.js"
   },

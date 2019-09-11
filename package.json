@@ -4,10 +4,12 @@
   "description": "Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.",
   "main": "./server/app.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=testing nyc --reporter=text --reporter=html mocha ./server/test/**.test.js --require @babel/polyfill --require @babel/register --exit",
+    "test": "cross-env NODE_ENV=testing npm run deleteTables && cross-env NODE_ENV=testing npm run createTables && cross-env NODE_ENV=testing  nyc --reporter=text --reporter=html mocha ./server/test/**.test.js --require @babel/polyfill --require @babel/register --exit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "dev": "cross-env NODE_ENV=production nodemon --exec babel-node ./server/server.js",
-    "start": "cross-env NODE_ENV=production babel-node ./server/server.js"
+    "start": "cross-env NODE_ENV=production babel-node ./server/server.js",
+    "createTables": "node --require @babel/polyfill --require @babel/register server/db/createTables.js",
+    "deleteTables": "node --require @babel/polyfill --require @babel/register server/db/deleteTables.js"
   },
   "repository": {
     "type": "git",

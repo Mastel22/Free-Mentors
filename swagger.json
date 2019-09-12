@@ -1,0 +1,385 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions",
+		"version": "1.0.0",
+		"title": "Free-Mentors",
+		"termsOfService": "https://github.com/Mastel22/Free-Mentors",
+		"contact": {
+			"email": "pmastel82@gmail.com"
+		}
+	},
+	"host": "localhost:4500",
+	"basePath": "/api/v1",
+	"tags": [
+		{
+			"name": "user",
+			"description":"signup,signin"
+		},
+		{
+			"name": "sessions",
+			"description":"request"
+
+		}
+	],
+	"schemes": [
+
+		"http"
+	],
+	"paths": {
+		"/auth/signup": {
+			"post": {
+				"tags": [
+					"user"
+				],
+				"summary": "Users can signup",
+				"description": "Endpoint for user signup",
+				"operationId": "adduser",
+				"consumes": [
+					"application/json",
+					"application/xml"
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "User parameters  to create account",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/signup"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Account created succefully"
+					},
+					"400": {
+						"description": "Invalid input"
+					},
+					"409": {
+						"description": "Email already used"
+					}
+				}
+			}
+
+		},
+		"/auth/signin": {
+			"post": {
+				"tags": [
+					"user"
+				],
+				"summary": "user signin",
+				"description": "Signin endpoint",
+				"operationId": "signin",
+				"consumes": [
+					"application/json",
+					"application/xml"
+				],
+				"produces": [
+					"application/json",
+					"application/xml"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Users can sign",
+						"required": true,
+						"schema": {
+	 
+						"$ref": "#/definitions/signin"
+							
+						}
+					}
+					
+				],
+				"responses": {
+					"200": {
+						"description": "User is successfully logged in"
+					},
+					"400": {
+						"description": "Invalid input"
+					},
+					"404": {
+						"description": "Incorrect Password"
+					}		
+				}
+			}
+		},
+		"/auth/user/{userId}": {
+			"patch": {
+				"tags": [
+					"user"
+				],
+				"summary": "Admin change user to mentor",
+				"description": "Endpoint for admin to change user to mentor",
+				"operationId": "updateUser",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "token",
+						"in": "header",
+						"description": "Admin token",
+						"required": true,
+						"type": "string"
+
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "user changed to a mentor"
+
+					},
+					"403": {
+						"description": "Forbidden access"
+					}
+				}
+				
+			}
+		},
+		"/mentors": {
+			"get": {
+				"tags": [
+					"Mentor"
+				],
+				"summary": "view all mentors",
+				"description": "Endpoint to view all mentors",
+				"operationId": "allMentors",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "token",
+						"in": "header",
+						"description": "User token",
+						"required": true,
+						"type": "string"
+
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "all mentors",
+						"type":"object",
+						"example":{
+							
+								"firstName": "Mastel",
+								"lastName": "Mahoro",
+								"email": "mahoro@gmail.com",
+								"address": "kigali",
+								"bio": "kkl",
+								"occupation": "ttt",
+								"expertise": "ttt"
+
+							  
+						}
+
+					},
+					"403": {
+						"description": "Forbidden access"
+					}
+				}
+				
+			}
+		},
+		"/mentors/{mentorId}": {
+			"get": {
+				"tags": [
+					"Mentor"
+				],
+				"summary": "User can view  specific mentor",
+				"description": "get specific mentor endpoint",
+				"operationId": "specificmentor",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "token",
+						"in": "header",
+						"description": "User token",
+						"required": true,
+						"type": "string"
+
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Specific mentor",
+						"schema":{
+							"type":"object"
+						}
+
+					},
+					"403": {
+						"description": "Forbidden access"
+					}
+				}
+				
+			}
+		},
+		"/sessions": {
+			"post": {
+				"tags": [
+					"sessions"
+				],
+				"summary": "create mentorship session",
+				"description": "Create session endpoint",
+				"operationId": "createsession",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "token",
+						"in": "header",
+						"description": "User token",
+						"required": true,
+						"type": "string"
+
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "request session object",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/sessions"
+						}
+
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "session created succefully"
+					},
+
+					"403": {
+						"description": "Forbidden access"
+					}
+				}
+				
+			}
+		},
+		
+		"/sessions/{sessionId}/accept": {
+			"patch": {
+			 "tags": [
+			  "sessions"
+			 ],
+			 "summary": "A mentor can accept a mentorship session request.",
+			 "description": "",
+			 "operationId": "accept-session",
+			 "produces": [
+			  "application/xml",
+			  "application/json"
+			 ],
+			 "parameters": [
+			  {
+			   "name": "token",
+			   "in": "header",
+			   "type": "string",
+			   "description": "Mentor token"
+			  },
+			  {
+				  "name": "sessionId",
+				  "in": "path",
+				  "type": "string",
+				  "description": "sessionId"
+			  }
+			 ],
+			 "responses": {
+				 "200": {
+				  "description": "Session changed to accepted"
+				 },      
+				 "403": {
+					 "description": "Forbidden access"
+					},
+				 "404": {
+					 "description": "Session not found"
+					}
+				}
+			}
+		   }
+		
+	},
+
+	"definitions": {
+		"signin": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		
+		"signup": {
+			"type": "object",
+			"properties": {
+				"firstName": {
+					"type": "string"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"address": {
+					"type": "string"
+				},
+				"bio":      {
+					"type": "string"	
+				},
+				"occupation": {
+					"type": "string"
+				},
+				"expertise": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		"sessions": {
+			"type": "object",
+			"properties": {
+				"mentorid": {
+					"type": "integer"
+				},
+				"questions": {
+					"type": "string"
+				}
+
+			}
+
+		}
+
+
+	},
+	"externalDocs": {
+		"description": "Find out more about Free-Mentors",
+		"url": "https://github.com/Mastel22/Free-Mentors"
+	}
+
+}

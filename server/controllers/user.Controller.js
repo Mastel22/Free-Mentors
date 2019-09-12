@@ -1,5 +1,4 @@
 import User from '../models/user.model';
-import { users, sessions } from '../db/data';
 import generateToken from '../helpers/token.helper';
 import Session from '../models/session.model';
 import Database from '../db/db';
@@ -19,7 +18,7 @@ export const signin = (req, res) => {
 };
 
 export const signup = async (req, res) => {
-  const user = new User(users.length + 1, req.body.firstName, req.body.lastName, req.body.email,
+  const user = new User(req.body.firstName, req.body.lastName, req.body.email,
     req.body.password, req.body.address, req.body.bio, req.body.occupation, req.body.expertise, req.body.role);
 
   await db.insertIntoUser(user);
@@ -53,9 +52,7 @@ export const allMentors = async (req, res) => {
 
     return res.status(200).json({
       status: 200,
-      data: {
-        result,
-      },
+      data: result,
     });
   }
   return res.status(401).json({
@@ -119,7 +116,8 @@ export const getMentor = async (req, res) => {
 
 export const acceptmentorshipRequest = async (req, res) => {
   if (req.user.role === 'mentor') {
-    const result =  await db.updateSession('accepted',req.params.sessionId);
+    
+    const result =  await db.updateSession('accepted',req.params.sessionId,req.user.userId);
     
     if (result.rowCount == 1) {
       return res.status(200).json({
@@ -130,10 +128,10 @@ export const acceptmentorshipRequest = async (req, res) => {
      
     return res.status(403).json({
       status: 403,
-      message: 'session not found',
+      message: 'Session not found',
     });
   }
-  return res.status(409).json({
+  return res.status(403).json({
     status: 403,
     message: 'Not allowed',
   });
@@ -143,7 +141,7 @@ export const acceptmentorshipRequest = async (req, res) => {
 
 export const rejectmentorshipRequest = async (req, res) => {
   if (req.user.role === 'mentor') {
-    const result =  await db.updateSession('rejected',req.params.sessionId);
+    const result =  await db.updateSession('rejected',req.params.sessionId,req.user.userId);
     
     if (result.rowCount == 1) {
       return res.status(200).json({
@@ -157,7 +155,7 @@ export const rejectmentorshipRequest = async (req, res) => {
       message: 'session not found',
     });
   }
-  return res.status(409).json({
+  return res.status(403).json({
     status: 403,
     message: 'Not allowed',
   });
@@ -176,10 +174,10 @@ export const changeMenteetoMentor = async (req, res) => {
      
     return res.status(403).json({
       status: 403,
-      message: 'no user found',
+      message: 'No user found',
     });
   }
-  return res.status(409).json({
+  return res.status(403).json({
     status: 403,
     message: 'Not allowed',
   });

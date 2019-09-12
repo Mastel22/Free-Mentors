@@ -4,10 +4,12 @@
   "description": "Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.",
   "main": "./server/app.js",
   "scripts": {
-    "test": "nyc --reporter=text --reporter=html mocha ./server/test/**.test.js --require @babel/polyfill --require @babel/register",
+    "test": "cross-env NODE_ENV=testing npm run deleteTables && cross-env NODE_ENV=testing npm run createTables && cross-env NODE_ENV=testing  nyc --reporter=text --reporter=html mocha ./server/test/**.test.js --require @babel/polyfill --require @babel/register --timeout 10000 --exit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "dev": "nodemon --exec babel-node ./server/server.js",
-    "start": "babel-node ./server/server.js"
+    "dev": "cross-env NODE_ENV=production nodemon --exec babel-node ./server/server.js",
+    "start": "cross-env NODE_ENV=production npm run createTables && cross-env NODE_ENV=production babel-node ./server/server.js",
+    "createTables": "node --require @babel/polyfill --require @babel/register server/db/createTables.js",
+    "deleteTables": "node --require @babel/polyfill --require @babel/register server/db/deleteTables.js"
   },
   "repository": {
     "type": "git",
@@ -34,8 +36,10 @@
     "@hapi/joi": "^15.1.1",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
+    "cross-env": "^5.2.1",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "node-modules": "^1.0.1",
     "pg": "^7.12.1"
@@ -52,7 +56,9 @@
   },
   "nyc": {
     "exclude": [
-      "**/test/**"
+      "**/test/**",
+      "server/server.js",
+      "server/db/db.js"
     ]
   }
 }

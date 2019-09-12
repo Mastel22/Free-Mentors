@@ -1,13 +1,16 @@
 import bcrypt from 'bcrypt';
-import { users } from '../db/data';
+import Database from '../db/db';
 
-export const emailUsed = (req, res, next) => {
-  const user = users.find((user) => user.email === req.body.email);
-  if (user) {
+const db = new Database();
+
+export const emailUsed = async (req, res, next) => {
+  const result = await db.selectCount('users', 'email', req.body.email);
+  
+  if (result.rows[0].count !== '0') {
     return res.status(409).json({
       status: 409,
       message: 'Email already used',
-      data: user.email,
+      data: req.body.email,
     });
   }
   next();
@@ -23,10 +26,10 @@ export const hashPassword = async (req, res, next) => {
 
 
 export const authenticate = async (req, res, next) => {
-  const user = users.find((user) => user.email === req.body.email);
-
-  if (user) {
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
+  const user = await db.selectBy('users','email',req.body.email);
+  if (user.rowCount > 0 ) {
+    
+    const validPassword = await bcrypt.compare(req.body.password, user.rows[0].password);
     if (validPassword) {
       next();
     } else {

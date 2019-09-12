@@ -4,7 +4,7 @@ import validation from '../middleware/validation.middleware';
 import { authenticate, hashPassword, emailUsed } from '../middleware/user.middleware';
 import {
   signup, signin,
-  allMentors, sessionCreate, getMentor, acceptmentorshipRequest, rejectmentorshipRequest,
+  allMentors, sessionCreate, getMentor, acceptmentorshipRequest, rejectmentorshipRequest,changeMenteetoMentor,
 } from '../controllers/user.Controller';
 import tokenVerifier from '../middleware/token.middleware';
 
@@ -16,8 +16,9 @@ route.post('/auth/signin', validation, authenticate, hashPassword, signin);
 route.get('/mentors', tokenVerifier, allMentors);
 route.post('/sessions', tokenVerifier, sessionCreate);
 route.get('/mentors/:mentorId', tokenVerifier, getMentor);
-route.patch('/sessions/:sessionId', tokenVerifier, acceptmentorshipRequest);
+route.patch('/sessions/:sessionId/accept', tokenVerifier, acceptmentorshipRequest);
 route.patch('/sessions/:sessionId/reject', tokenVerifier, rejectmentorshipRequest);
+route.patch('/user/:userId', tokenVerifier, changeMenteetoMentor);
 
 
 export default route;

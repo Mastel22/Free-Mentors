@@ -11,9 +11,9 @@ table{
     border-collapse: collapse;
     opacity: 0.95;
     width: 85%;
-    align
-   
-
+}
+.links li{
+    padding-left: 250px;
 }
 th{
     background:  rgba(44, 62, 80, 0.8);
@@ -40,14 +40,15 @@ th, td{
 
     background-color:#00FFFF;
     border: none;
-   
+    cursor: pointer;
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     line-height: 40px;
     width: 200px;
-    margin-top: 25px;
+    margin-top: 10px;
+    
 }
 @media screen and (max-width: 768px) {
     body{

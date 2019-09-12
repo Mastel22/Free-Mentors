@@ -1,6 +1,5 @@
 class Session {
-  constructor(sessionId, mentorId, menteeId, questions, menteeEmail, status = 'pending') {
-    this.sessionId = sessionId;
+  constructor(mentorId, menteeId, questions, menteeEmail, status = 'pending') {
     this.mentorId = mentorId;
     this.menteeId = menteeId;
     this.questions = questions;

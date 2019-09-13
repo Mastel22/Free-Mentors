@@ -42,7 +42,8 @@
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "node-modules": "^1.0.1",
-    "pg": "^7.12.1"
+    "pg": "^7.12.1",
+    "swagger-ui-express": "^4.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

@@ -126,8 +126,8 @@ export const acceptmentorshipRequest = async (req, res) => {
       });
     }
      
-    return res.status(403).json({
-      status: 403,
+    return res.status(404).json({
+      status: 404,
       message: 'Session not found',
     });
   }
@@ -155,8 +155,8 @@ export const rejectmentorshipRequest = async (req, res) => {
       message: 'session not found',
     });
   }
-  return res.status(403).json({
-    status: 403,
+  return res.status(404).json({
+    status: 404,
     message: 'Not allowed',
   });
 };
@@ -172,8 +172,8 @@ export const changeMenteetoMentor = async (req, res) => {
       });
     }
      
-    return res.status(403).json({
-      status: 403,
+    return res.status(404).json({
+      status: 404,
       message: 'No user found',
     });
   }
